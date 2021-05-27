@@ -122,7 +122,7 @@ def sign_detection(db, user_id):
 
 def speech_detection():
     st.header("Press the following button to speak.")
-    st.markdown("As soon as you press the button, microphone of your device gets activated and your audio is converted to Sign Language.")
+    st.write("As soon as you press the button, microphone of your device gets activated and your audio is converted to Sign Language.")
     stt_button = Button(label="Speak", width=100)
 
     stt_button.js_on_event("button_click", CustomJS(code="""
@@ -157,7 +157,8 @@ def speech_detection():
             text = result.get("GET_TEXT")
             text = text.upper()
             for i in text:
-                st.image("static/sign_alpha/"+i+".jpg", width=200, caption=i, use_column_width=True)
+                st.image("static/sign_alpha/"+i+".jpg", width=200)
+                st.write(i)
     return 0
 
 def show_database(db, user_id):
@@ -183,6 +184,7 @@ def main():
     image = Image.open("static/vid_call.jpg")
     logo = Image.open("static/logo.png")
     st.set_page_config(page_title="SpeechSign", page_icon=logo)
+    
     st.image(image)
     st.title("@SpeechSign")
     user_id, query_param = cache_query_param()
