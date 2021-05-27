@@ -10,3 +10,4 @@ PyJWT
 tensorflow
 numpy
 bokeh
+streamlit_bokeh_events

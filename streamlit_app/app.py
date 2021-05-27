@@ -156,6 +156,8 @@ def speech_detection():
         if "GET_TEXT" in result:
             text = result.get("GET_TEXT")
             text = text.upper()
+            text = text.replace(' ','')
+            print(text)
             for i in text:
                 st.image("static/sign_alpha/"+i+".jpg", width=200)
                 st.write(i)
