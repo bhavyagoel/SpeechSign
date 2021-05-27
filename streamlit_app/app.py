@@ -195,7 +195,7 @@ def main():
     st.sidebar.title("Select the process to your convinience")
     st.sidebar.markdown("Select the conversion method accordingly:")
     algo = st.sidebar.selectbox(
-        "Select the Operation", options=["Sign-to-Speech", "Speech-to-Sign", "Access Database"]
+        "Select the Operation", options=["Sign-to-Speech", "Speech-to-Sign", "Access Database", "Sign Recog Model Architecture"]
     )
 
     if algo == "Sign-to-Speech":
@@ -204,6 +204,9 @@ def main():
         speech_detection()
     elif algo == "Access Database":
         show_database(db, user_id=user_id)
+    elif algo == "Sign Recog Model Architecture":
+        st.title("Sign Recog Model Architecture")
+        st.image("static/arch.png")
  
     
 if __name__ == "__main__":
