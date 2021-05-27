@@ -1,4 +1,7 @@
-asyncio==1.0.0
+asyncio
 streamlit-webrtc
 streamlit
 firebase-admin
+opencv-python
+pyrebase
+pillow
