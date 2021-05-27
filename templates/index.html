@@ -67,9 +67,12 @@
             <li><a class="nav-link scrollto" href="#features">Features</a></li>
             <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li><a class="nav-link scrollto" href="#team">Team</a></li>
-            <li>
-              <a class="getstarted scrollto" href="/login">Get Started</a>
-            </li>
+            {% if not session.logged_in %}
+              <li>
+                <a class="getstarted scrollto" href="/login">Login</a>
+              </li>
+            {% endif %}
+          
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -89,7 +92,7 @@
           We are team of talented developers building a true solution for
           Speech-Sign Conversion
         </h2>
-        <a href="/login" class="btn-get-started scrollto">Get Started</a>
+        <a href="#about" class="btn-get-started scrollto">Get Started</a>
         <img
           src="/static/img/logo1.png"
           class="img-fluid hero-img"

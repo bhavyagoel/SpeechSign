@@ -1,7 +1,12 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request
 import pyrebase
 from functools import wraps
-
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+import urllib
+import webbrowser
+from itsdangerous import URLSafeTimedSerializer
 
 config = {
     "apiKey": "AIzaSyADzfEN_Rc2zLB66Uf0fAGXjxV0QZKMAOo",
@@ -15,11 +20,18 @@ config = {
 }
 
 
-firebase = pyrebase.initialize_app(config)
+
 
 app = Flask(__name__)
+app.secret_key = 'secret123'
+s = URLSafeTimedSerializer('secret123')
+
+firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 
+cred = credentials.Certificate('speechsign-23477-8f5b84f0980a.json')
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
 @app.route('/')
 def index():
@@ -33,19 +45,29 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
-        try:
-            auth.sign_in_with_email_and_password(email, password)
-            # user_id = auth.get_account_info(user['idToken'])
-            
-            session["logged_in"] = True
-
-            return render_template("login.html")
-        
-        except:
-            unsuccessful = " Please check your credentials."
-            print("Unsuccessful login")
+        if email != '' and password != '':
+            try:
+                user = auth.sign_in_with_email_and_password(email, password)            
+                user_token = user['idToken']
+                user_info = auth.get_account_info(user_token)
+                user_id = user_info['users'][0]['localId']
+                if user_info['users'][0]['emailVerified']:
+                    session['logged_in'] = True
+                    webbrowser.open_new_tab('http://localhost:8501/?user='+user_id)
+                    return redirect(url_for('index'))
+                else:
+                    unsuccessful = "Please verify your Email ID."
+                    auth.send_email_verification(user_token)
+                    print("Email Not Verified")
+                    return render_template("login.html", umessage=unsuccessful)
+            except:
+                unsuccessful = "Please check your credentials."
+                print("Unsuccessful login")
+                return render_template("login.html", umessage=unsuccessful)
+        else:
+            unsuccessful = "Please fill the credentials properly."
+            print("Empty Credentials")
             return render_template("login.html", umessage=unsuccessful)
-        
     return render_template("login.html")
 
 
@@ -55,23 +77,22 @@ def register():
     if request.method == 'POST':
         password = request.form['password']
         email = request.form['email']
-        auth.create_user_with_email_and_password(email,password)
+        name = request.form['name']
+        dob = request.form['dob']
+        if password!='' and email !='' and name !='' and dob !='':
+            user = auth.create_user_with_email_and_password(email,password)
+            user_token = user['idToken']
+            auth.send_email_verification(user_token)
+            user_info = auth.get_account_info(user_token)
+            user_id = user_info['users'][0]['localId']
 
+            doc_ref = db.collection(u'users').document(user_id)
+            doc_ref.set({
+                u'name':name,
+                u'dob':dob,
+                u'email':email
+            })
     return render_template("login.html")
-
-
-
-# to prevent using of app without login
-def is_logged_in(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            flash('Unauthorised, Please Login', 'danger')
-            return redirect(url_for('login'))
-
-    return wrap
 
 
 if __name__ == '__main__':

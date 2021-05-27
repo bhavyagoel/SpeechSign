@@ -52,7 +52,15 @@
 
           <form action="/register" class="sign-up-form" method="POST">
             <h2 class="title">Sign up</h2>
-
+            <div class="input-field">
+              <i class="fas fa-user-tie"></i>
+              <input type="text" placeholder="Name" name="name" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-calendar-alt"></i>
+              <input type="date" placeholder="DOB" name="dob" />
+            </div>
+            
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Email" name="email" />
@@ -61,6 +69,7 @@
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" name="password" />
             </div>
+            
             <input type="submit" class="btn" value="Sign up" />
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">

@@ -1,0 +1,4 @@
+asyncio==1.0.0
+streamlit-webrtc
+streamlit
+firebase-admin
