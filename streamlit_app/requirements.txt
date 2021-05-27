@@ -5,3 +5,6 @@ firebase-admin
 opencv-python
 pyrebase
 pillow
+PyJWT
+tensorflow
+numpy
