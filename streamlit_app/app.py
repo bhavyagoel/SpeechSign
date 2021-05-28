@@ -17,7 +17,7 @@ import cv2
 import tensorflow.keras
 import numpy as np
 import pandas as pd
-from bokeh.models.widgets import Button
+from bokeh.models.widgets import Button, widget
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 
@@ -157,10 +157,38 @@ def speech_detection():
             text = result.get("GET_TEXT")
             text = text.upper()
             text = text.replace(' ','')
-            print(text)
+            mean_width = 0
+            mean_height = 0
+            num_of_images = len(text)
             for i in text:
-                st.image("static/sign_alpha/"+i+".jpg", width=200)
-                st.write(i)
+                im = Image.open("static/sign_alpha/"+i+".jpg")
+                width, height = im.size
+                mean_width += width
+                mean_height += height
+
+            mean_width = int(mean_width/ num_of_images)
+            mean_height = int(mean_height/ num_of_images)
+            images = []
+            for i in text:
+                im = Image.open("static/sign_alpha/"+i+".jpg")
+                width, height = im.size
+
+                imResize = im.resize((mean_width, mean_height), Image.ANTIALIAS)
+                imResize.save("video_proc/"+i+".jpeg",'JPEG', quality=95)
+            
+            video_name = 'video_proc/{}.webm'.format(text)
+            frame = cv2.imread("video_proc/"+text[0]+".jpeg")
+            height, width, layers = frame.shape
+            fourcc = cv2.VideoWriter_fourcc(*'VP90')
+            video = cv2.VideoWriter(video_name,fourcc, 1, (width, height)) 
+
+            for i in text:
+                video.write(cv2.imread("video_proc/"+i+".jpeg"))
+
+            cv2.destroyAllWindows()
+            video.release()
+            st.header(result.get("GET_TEXT").title())
+            st.video("video_proc/{}.webm".format(text))
     return 0
 
 def show_database(db, user_id):

@@ -67,12 +67,9 @@
             <li><a class="nav-link scrollto" href="#features">Features</a></li>
             <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li><a class="nav-link scrollto" href="#team">Team</a></li>
-            {% if not session.logged_in %}
-              <li>
-                <a class="getstarted scrollto" href="/login">Login</a>
-              </li>
-            {% endif %}
-          
+            <li>
+              <a class="getstarted scrollto" href="/login">Login</a>
+            </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -84,11 +81,17 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
       <div
-        class="container d-flex flex-column align-items-center justify-content-center"
+        class="
+          container
+          d-flex
+          flex-column
+          align-items-center
+          justify-content-center
+        "
         data-aos="fade-up"
       >
-      <br><br><br><br><br>
-      <br>
+        <br /><br /><br /><br /><br />
+        <br />
 
         <h1>Enhancing Communications Worldwide</h1>
         <h2>
@@ -117,11 +120,13 @@
               data-aos="fade-right"
             >
               <div class="content">
-                <h3>Voluptatem dignissimos provident quasi</h3>
+                <h3>Purpose and Our Work Ethics</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Duis aute irure dolor in reprehenderit
+                  The purpose of SpeechSign Software is to ease online
+                  communication between Specially-Abled group of citizens and to
+                  create a convenient and easy-to-use application for everyone.
+                  The system is based on the Deep Learning Model to detect the
+                  Sign Language, and also to convert speech to sign language
                 </p>
                 <a href="#" class="about-btn"
                   >About us <i class="bx bx-chevron-right"></i
@@ -140,10 +145,10 @@
                     data-aos-delay="100"
                   >
                     <i class="bx bx-receipt"></i>
-                    <h4>Corporis voluptates sit</h4>
+                    <h4>Documentation</h4>
                     <p>
-                      Consequuntur sunt aut quasi enim aliquam quae harum
-                      pariatur laboris nisi ut aliquip
+                      We have ensured that the documentation is precise and
+                      detailed for any user to start using our software.
                     </p>
                   </div>
                   <div
@@ -152,10 +157,11 @@
                     data-aos-delay="200"
                   >
                     <i class="bx bx-cube-alt"></i>
-                    <h4>Ullamco laboris nisi</h4>
+                    <h4>Analysing Packages</h4>
                     <p>
-                      Excepteur sint occaecat cupidatat non proident, sunt in
-                      culpa qui officia deserunt
+                      We have tried and used multiple packages manages and
+                      dependancy resolver like depandabot, pip, conda and more,
+                      for a stable project.
                     </p>
                   </div>
                   <div
@@ -164,10 +170,11 @@
                     data-aos-delay="300"
                   >
                     <i class="bx bx-images"></i>
-                    <h4>Labore consequatur</h4>
+                    <h4>Designing</h4>
                     <p>
-                      Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut
-                      maiores omnis facere
+                      While designing of our project we have ensured that the
+                      UI/UX for the software remains user friendly and easy to
+                      learn.
                     </p>
                   </div>
                   <div
@@ -176,10 +183,12 @@
                     data-aos-delay="400"
                   >
                     <i class="bx bx-shield"></i>
-                    <h4>Beatae veritatis</h4>
+                    <h4>Security</h4>
                     <p>
-                      Expedita veritatis consequuntur nihil tempore laudantium
-                      vitae denat pacta
+                      To ensure secure authentication and securing user data we
+                      have relied on Google Firebase and Google Firestore, which
+                      provides a secure, scalable authentication and data
+                      storage platform.
                     </p>
                   </div>
                 </div>
@@ -197,10 +206,10 @@
           <div class="section-title">
             <h2>Features</h2>
             <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
+              SpeechSign focuses on a feature rich environment for their user
+              that is user friendly. We have made sure that our user gets all
+              the necessary feature to converse with a specially-abled person
+              and get a realtime analysis of the statistics.
             </p>
           </div>
 
@@ -217,26 +226,24 @@
               data-aos="fade-left"
               data-aos-delay="100"
             >
-              <h3>
-                Voluptatem dignissimos provident quasi corporis voluptates sit
-                assumenda.
-              </h3>
+              <h3>Speech to Sign Language Support</h3>
               <p class="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                To convert Speech to Sign, we first converted speech into text
+                using WebkitSocketRecognition JS package, and using the text
+                converted those to Sign Languega.
               </p>
               <ul>
                 <li>
-                  <i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex
-                  ea commodo consequat.
+                  <i class="bi bi-check"></i> Converting Speech with on-click
+                  button to text.
                 </li>
                 <li>
-                  <i class="bi bi-check"></i> Duis aute irure dolor in
-                  reprehenderit in voluptate velit.
+                  <i class="bi bi-check"></i> Converting text to sign language
+                  using fetched images.
                 </li>
                 <li>
-                  <i class="bi bi-check"></i> Ullam est qui quos consequatur eos
-                  accusamus.
+                  <i class="bi bi-check"></i> Stacking the fetched images and
+                  making a video out of it.
                 </li>
               </ul>
             </div>
@@ -251,7 +258,7 @@
               />
             </div>
             <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
-              <h3>Corporis temporibus maiores provident</h3>
+              <h3>Sign to Speech Language Support</h3>
               <p class="fst-italic">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -275,14 +282,12 @@
               />
             </div>
             <div class="col-md-7 pt-5" data-aos="fade-left">
-              <h3>
-                Sunt consequatur ad ut est nulla consectetur reiciendis animi
-                voluptas
-              </h3>
+              <h3>Secure Authentication and Mantaining Database Support</h3>
               <p>
-                Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus
-                quia minima quod. Sunt saepe odit aut quia voluptatem hic
-                voluptas dolor doloremque.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Voluptates, sit ipsam! Neque praesentium assumenda maxime et sit
+                repellat mollitia nihil fuga, quibusdam non, maiores eveniet,
+                nobis quaerat debitis veniam est.
               </p>
               <ul>
                 <li>
