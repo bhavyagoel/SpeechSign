@@ -53,7 +53,6 @@ def login():
                 user_id = user_info['users'][0]['localId']
                 if user_info['users'][0]['emailVerified']:
                     session['logged_in'] = True
-                    # webbrowser.open_new_tab('https://share.streamlit.io/bhavyagoel/speechsign-model/main/app.py/?user='+user_id)
                     return redirect('https://speech-sign.streamlit.app/?user='+user_id)
                 else:
                     unsuccessful = "Please verify your Email ID."
