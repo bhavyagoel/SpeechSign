@@ -1,4 +1,4 @@
-pyrebase 
+pyrebase4
 flask
 gunicorn
 google-cloud-firestore
